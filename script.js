@@ -1,0 +1,9 @@
+var time= document.getElementById("time");
+var homeScreen=document.getElementById("homescreen");
+var startButton=document.getElementById("start");
+var questionsDiv=document.getElementById("questions");
+var questiontitle=document.getElementById("questiontitle");
+var options=document.getElementById("options");
+var endscreen=document.getElementById("endscreen");
+var yourscore=document.getElementById("yourscore");
+var submit=document.getElementById("submit");
