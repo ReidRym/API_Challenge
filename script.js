@@ -52,7 +52,11 @@ if(this.value===questions[questionIndex].answer){
     time.textContent=secondsLeft
 }
 questionIndex++
+if(questionIndex===questions.length){
+    quizEnd()}
+else{
 showQuestions()
+}
 }
 // create quiz end function that hides the questions div 
 // and unhides the end screen, clear interval on Interval state
@@ -62,6 +66,24 @@ showQuestions()
 //score (time left to score) and set into local storage
 // function to render name and scores from local storage
 // back onto high scores screen. 
+function quizEnd(){
+  questionsDiv.setAttribute("class", "hide")
+  endscreen.removeAttribute("class","hide")
+  clearInterval(IntervalState)
+}
+function saveScore(){
+  var initials= document.getElementById("initials").value
+  var score= secondsLeft
+  var savedScore= {
+    name: initials,
+    newScore: score,
+  }
+  var savedScores= JSON.parse(localStorage.getItem("savedScores")) || []
+  savedScores.push(savedScore)
+  localStorage.setItem("savedScores", JSON.stringify(savedScores))
+  //renderScores()
+}
+submit.onclick=saveScore
 var questions = [
     {
       title: '1. An Officer can shoot an unarmed man under what certain condition?:',
@@ -84,9 +106,16 @@ var questions = [
       answer: ' Philadelphia',
     },
     
-      
-    
     
   ]
-
-startButton.onclick=startgame
+  function renderScores(){
+    var savedScores= JSON.parse(localStorage.getItem("savedScores")) || []
+    savedScores.forEach(function(score){
+      var li= document.createElement("li")
+      li.textContent= score.name + " " + score.newScore
+      var ol= document.getElementById("highscores")
+      ol.append(li)
+    })
+  }  
+  renderScores()
+  startButton.onclick=startgame
