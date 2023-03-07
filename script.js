@@ -10,6 +10,7 @@ var submit=document.getElementById("submit");
 var secondsLeft=50;
 var questionIndex=0;
 var IntervalState;
+
 function startgame(){
     homeScreen.setAttribute("class", "hide")
     questionsDiv.removeAttribute("class","hide")
@@ -22,7 +23,7 @@ if(secondsLeft <=0){clearInterval(IntervalState)}
 },1000);
 
 
-//display question function here
+
 showQuestions()
 }
 
@@ -30,14 +31,12 @@ function showQuestions (){
 var currentQuestion= questions [questionIndex]
 questiontitle.textContent=currentQuestion.title
 options.innerHTML=""
-// for each choice in our current questions choices array create 
-// a button set text content, give it a value attribute, and a 
-// aapend to options div.
+
 currentQuestion.choices.forEach(function(choice){
     var answerBtn= document.createElement("button")
     answerBtn.textContent=choice
     answerBtn.setAttribute("value",choice)
-    //attach check answer function here
+   
     answerBtn.onclick=checkAnswer
     options.append(answerBtn)
 })
@@ -84,5 +83,10 @@ var questions = [
       choices: ['Miami', 'San Diego', 'San Francisco', ' Philadelphia'],
       answer: ' Philadelphia',
     },
+    
+      
+    
+    
   ]
+
 startButton.onclick=startgame
