@@ -58,14 +58,7 @@ else{
 showQuestions()
 }
 }
-// create quiz end function that hides the questions div 
-// and unhides the end screen, clear interval on Interval state
-// add click event to submit button that grabs the value that
-// it tied to the name input
-// attach onclick to submit button that takes initials value and
-//score (time left to score) and set into local storage
-// function to render name and scores from local storage
-// back onto high scores screen. 
+
 function quizEnd(){
   questionsDiv.setAttribute("class", "hide")
   endscreen.removeAttribute("class","hide")
@@ -81,7 +74,7 @@ function saveScore(){
   var savedScores= JSON.parse(localStorage.getItem("savedScores")) || []
   savedScores.push(savedScore)
   localStorage.setItem("savedScores", JSON.stringify(savedScores))
-  //renderScores()
+  
 }
 submit.onclick=saveScore
 var questions = [
